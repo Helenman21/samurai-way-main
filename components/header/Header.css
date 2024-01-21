@@ -1,0 +1,8 @@
+.App-wrapper__header {
+	grid-area: header;
+	background: rgb(15, 130, 39);
+}
+.App-wrapper__header img{
+	width: 20px;
+	grid-area: header-img;
+}

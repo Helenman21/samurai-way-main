@@ -8,46 +8,14 @@
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px;
 }
-.App-wrapper__header {
-	grid-area: header;
-	background: rgb(15, 130, 39);
-}
-.App-wrapper__header img{
-	width: 20px;
-	grid-area: header-img;
-}
-.App-wrapper__nav {
-	grid-area: nav;
-	background-color: rgb(155, 36, 36);
-}
 
-.App-wrapper__content {
-	grid-area: content;
-	background-color: cornflowerblue;
-}
-.App-wrapper__content img {
-	width: 80%;
-	height: 70%;
-}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
-.App-wrapper__content_about-me {
-	display: flex
-}
-.App-wrapper__content_about-me p {
-	width: 70%;
-}
-.App-wrapper__content_about-me img {
-	width: 30%;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+
 
 .App-header {
   background-color: #282c34;

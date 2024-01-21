@@ -1,0 +1,10 @@
+.App-wrapper__nav {
+	grid-area: nav;
+	background-color: rgb(155, 36, 36);
+}
+.item {
+	color: white
+}
+.item.active {
+	color: blue
+}
