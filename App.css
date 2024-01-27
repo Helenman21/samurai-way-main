@@ -1,4 +1,4 @@
-.App-wrapper {
+.app-wrapper {
   text-align: center;
   width: 1200px;
   margin: 0 auto;
@@ -39,4 +39,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+.app-wrapper-content {
+	grid-area: content;
+	background-color: cornflowerblue;
+	padding: 5px;
 }

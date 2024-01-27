@@ -3,7 +3,7 @@ import './Profile.css'
 
 export const Profile = () => {
 	return (
-		<div className="App-wrapper__content">
+		<div >
 			<div className='App-wrapper__content_conteyner-img' >
 				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8XXdqNtvjDu3mwsLFTEen-Qlco21dD-__0g&usqp=CAU" alt="картинка" />
 			</div>

@@ -1,8 +1,8 @@
-.App-wrapper__content {
+/* .App-wrapper__content {
 	grid-area: content;
 	background-color: cornflowerblue;
 	padding: 5px;
-}
+} */
 .App-wrapper__content img {
 	object-fit: cover;
 }
