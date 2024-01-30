@@ -1,0 +1,19 @@
+.App-wrapper__content_conteyner-img {
+	min-width: 100%;
+	max-height: 250px;
+}
+.App-wrapper__content_conteyner-img img {
+	min-width: 100%;
+	max-height: 150px;
+}
+.App-wrapper__content_about-me {
+	display: flex;
+	padding: 10px;
+}
+.App-wrapper__content_about-me p {
+	width: 70%;
+}
+.App-wrapper__content_about-me img {
+	width:15%;
+	height: 150px;
+}

@@ -1,27 +1,2 @@
-/* .App-wrapper__content {
-	grid-area: content;
-	background-color: cornflowerblue;
-	padding: 5px;
-} */
-.App-wrapper__content img {
-	object-fit: cover;
-}
-.App-wrapper__content_conteyner-img {
-	min-width: 100%;
-	max-height: 250px;
-}
-.App-wrapper__content_conteyner-img img {
-	min-width: 100%;
-	max-height: 150px;
-}
-.App-wrapper__content_about-me {
-	display: flex
-}
-.App-wrapper__content_about-me p {
-	width: 70%;
-}
-.App-wrapper__content_about-me img {
-	width:15%;
-	height: 150px;
-}
+
 

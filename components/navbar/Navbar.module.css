@@ -2,9 +2,11 @@
 	grid-area: nav;
 	background-color: rgb(155, 36, 36);
 }
-.item {
-	color: white
+.item a{
+	color: white;
+	text-decoration: none;
+
 }
-.item.active {
-	color: blue
+.item a.active {
+	color: gold
 }
