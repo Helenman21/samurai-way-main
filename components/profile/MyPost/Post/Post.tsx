@@ -1,9 +1,11 @@
 import classes from  './Post.module.css'
-type PostPropsType = {
+export type PostPropsType = {
 	message: string
+	likesCount: number
+	id: number
 }
-export const Post:React.FC<PostPropsType> = ({message}) => {
+export const Post:React.FC<PostPropsType> = ({message, likesCount, id}) => {
 	return (
-				<article className={classes.post} >{message}</article>
+				<article className={classes.post} >{message}<span>{likesCount}</span></article>
 	)
 }

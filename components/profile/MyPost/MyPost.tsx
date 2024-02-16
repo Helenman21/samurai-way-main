@@ -1,7 +1,14 @@
+import { type } from 'os'
 import classes from  './MyPost.module.css'
-import { Post } from './Post/Post'
+import { Post, PostPropsType } from './Post/Post'
 
-export const MyPost = () => {
+type MyPostPropsType = {
+	postsData: PostPropsType[]
+}
+
+export const MyPost = ({postsData}: MyPostPropsType) => {
+	const postsArray = postsData.map( el => ( <Post  message={el.message} key={el.id} id={el.id} likesCount={el.likesCount} />))
+	console.log('postsArray', postsArray)
 	return (
 		<div className={classes.content}>
 			<h3 className={classes.header} >My posts</h3>
@@ -14,8 +21,7 @@ export const MyPost = () => {
 				</div>
 			</div>
 			<section>
-				<Post message="Hi, how are you" />
-				<Post message="My first post" />
+				{postsArray}
 			</section>
 	  </div>
 	)
