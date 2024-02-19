@@ -2,7 +2,7 @@ import { type } from 'os'
 import classes from  './MyPost.module.css'
 import { Post, PostPropsType } from './Post/Post'
 
-type MyPostPropsType = {
+export type MyPostPropsType = {
 	postsData: PostPropsType[]
 }
 
