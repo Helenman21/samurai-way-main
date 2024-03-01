@@ -9,15 +9,15 @@ import { Navbar } from './components/navbar/Navbar';
 import { MyPostPropsType } from './components/profile/MyPost/MyPost';
 import { PostPropsType } from './components/profile/MyPost/Post/Post';
 import { Profile } from './components/profile/Profile';
-import { StateType, updateNewPostText } from './redux/state';
+import { StateType, store, StoreType } from './redux/state';
 
 type AppPropsType = {
-	state: StateType
-	addPost: () => void
+	store: StoreType
 }
 
 
-function App({state, addPost}: AppPropsType) {
+function App({store}: AppPropsType) {
+	const state = store.getState()
   return (
 	<BrowserRouter>
 		<div className="app-wrapper">
@@ -27,8 +27,8 @@ function App({state, addPost}: AppPropsType) {
 			<Route path={'/dialogs'} render={() => <Dialogs stateDialogs={state.stateDialogs} />}/>
 			<Route path={'/profile'} component={() => <Profile postsData={state.stateProfile.postsData}
 																			   newPostText={state.stateProfile.newPostText}
-																				addPost={addPost}
-																				updateNewPostText={updateNewPostText} />} />
+																				addPost={store.addPost.bind(store)}
+																				updateNewPostText={store.updateNewPostText.bind(store)} />} />
 		</div>
 		</div>
 	 </BrowserRouter>
