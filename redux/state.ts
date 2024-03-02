@@ -1,9 +1,11 @@
+import { dialogsReduser } from './dialogs-reduser';
 
 import { DialogItemPropsType } from "../components/dialogs/DialogItem"
 import { MessagePropsType } from "../components/dialogs/Message"
 import { PostPropsType } from "../components/profile/MyPost/Post/Post"
+import { profileReduser } from './profile-reduser';
 
-enum ActionsEnumTypes{
+export enum ActionsEnumTypes{
 	ADD_POST = "ADD-POST",
 	NEW_POST_TEXT = "NEW_POST_TEXT",
 	NEW_MESSAGE_TEXT = "NEW_MESSAGE_TEXT",
@@ -92,27 +94,9 @@ export const store: StoreType = {
 		console.log('changed state')
 	},
 	dispatch(action){
-		if(action.type === ActionsEnumTypes.ADD_POST){
-			const newpost = {
-				message: this._state.stateProfile.newPostText,
-				likesCount: 0,
-				id: new Date().getTime()
-			}
-			this._state.stateProfile.postsData.push(newpost)
-			this._state.stateProfile.newPostText = ''
-			this.rerender()
-		}else if(action.type === ActionsEnumTypes.NEW_POST_TEXT){
-			this._state.stateProfile.newPostText = action.payload.newText
-			this.rerender()
-		}else if(action.type === ActionsEnumTypes.NEW_MESSAGE_TEXT){
-			this._state.stateDialogs.newMessageText = action.payload.newText
-			this.rerender()
-		}else if(action.type === ActionsEnumTypes.ADD_NEW_MESSAGE){
-			const newMessage = { message: this._state.stateDialogs.newMessageText, id: this._state.stateDialogs.dialogsData.length +1 }
-			this._state.stateDialogs.messageData.push(newMessage)
-			this._state.stateDialogs.newMessageText = ''
-			this.rerender()
-		}
+		this._state.stateDialogs = dialogsReduser(this._state.stateDialogs, action)
+		this._state.stateProfile = profileReduser(this._state.stateProfile, action)
+		this.rerender()
 	},
 	subscribe(observer: () => void) {
 		this.rerender = observer
