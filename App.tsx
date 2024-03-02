@@ -24,7 +24,9 @@ function App({store}: AppPropsType) {
 		<Header />
 		<Navbar/>	  
 		<div className='app-wrapper-content'>
-			<Route path={'/dialogs'} render={() => <Dialogs stateDialogs={state.stateDialogs} />}/>
+			<Route path={'/dialogs'} render={() => <Dialogs stateDialogs={state.stateDialogs} 
+																			newMessageText={state.stateDialogs.newMessageText}
+																			dispatch={store.dispatch.bind(store)} />}/>
 			<Route path={'/profile'} component={() => <Profile postsData={state.stateProfile.postsData}
 																			   newPostText={state.stateProfile.newPostText}
 																				dispatch={store.dispatch.bind(store)}

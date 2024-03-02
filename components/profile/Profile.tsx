@@ -14,7 +14,7 @@ export const Profile = ({postsData, dispatch, newPostText}: ProfilePropsType) =>
 
 	return (
 		<div >
-			<ProfileInfo/>
+			<ProfileInfo />
 			<MyPost postsData={postsData}
 					  dispatch={dispatch} 
 					  newPostText={newPostText}
