@@ -3,10 +3,10 @@ import { DialogItemPropsType } from "../components/dialogs/DialogItem"
 import { MessagePropsType } from "../components/dialogs/Message"
 import { PostPropsType } from "../components/profile/MyPost/Post/Post"
 
-let rerenderEntrieTree = () => {
-	console.log('state')
+enum ActionsEnumTypes{
+	ADD_POST = "ADD-POST",
+	NEW_POST_TEXT = "NEW_POST_TEXT"
 }
-
 export type StateDialogsType = {
 	dialogsData: DialogItemPropsType[]
 	messageData: MessagePropsType[]
@@ -20,43 +20,25 @@ export type StateType = {
 	stateProfile: StateProfileType
 }
 
-// export const state: StateType = {
-// 	stateDialogs:{
-// 		dialogsData: [
-// 			{id: 1, name: 'пользователь 1'},
-// 			{id: 2, name: 'пользователь 2'},
-// 			{id: 3, name: 'пользователь 3'},
-// 			{id: 4, name: 'пользователь 4'},
-// 			{id: 5, name: 'пользователь 5'},
-// 			{id: 6, name: 'пользователь 6'}
-// 		],
-// 		messageData: [
-// 			{message: 'How', id: 1},
-// 			{message: 'Howare you', id: 2}
-// 		]
-// 	},
-// 	stateProfile: {
-// 		postsData: [
-// 			{message: 'How are you', likesCount: 2, id: 1},
-// 			{message: 'I am fine', likesCount: 2, id: 2}
-// 		],
-// 		newPostText: ''
-// 	}
-// }
-
-
-// export const updateNewPostText = (newText: string) => {
-// 	state.stateProfile.newPostText = newText
-// 	rerenderEntrieTree()
-// }
-
-// export const subscribe = (observer: () => void) => {
-// 	rerenderEntrieTree = observer
-// }
+type AddPostType = ReturnType<typeof addPostAC>
+type NewPostTextType = ReturnType<typeof newPostTextAC>
+export type ActionsType = AddPostType | NewPostTextType
+export const addPostAC = () => {
+	return {
+		type: ActionsEnumTypes.ADD_POST
+	}as const
+}
+export const newPostTextAC = (newText: string) => {
+	return {
+		type: ActionsEnumTypes.NEW_POST_TEXT,
+		payload: {
+			newText
+		}
+	}as const
+}
 export type StoreType = {
 	_state: StateType
-	addPost: () => void
-	updateNewPostText: (newText: string) => void
+	dispatch: (action: ActionsType) => void
 	rerender: () => void
 	subscribe: (observer: () => void) => void
 	getState: () => StateType
@@ -88,19 +70,21 @@ export const store: StoreType = {
 	rerender() {
 		console.log('changed state')
 	},
-	addPost() {
-		const newpost = {
-			message: this._state.stateProfile.newPostText,
-			likesCount: 0,
-			id: new Date().getTime()
+	dispatch(action){
+		if(action.type === ActionsEnumTypes.ADD_POST){
+			const newpost = {
+				message: this._state.stateProfile.newPostText,
+				likesCount: 0,
+				id: new Date().getTime()
+			}
+			this._state.stateProfile.postsData.push(newpost)
+			this._state.stateProfile.newPostText = ''
+			this.rerender()
+		}else if(action.type === ActionsEnumTypes.NEW_POST_TEXT){
+			this._state.stateProfile.newPostText = action.payload.newText
+			this.rerender()
 		}
-		this._state.stateProfile.postsData.push(newpost)
-		this._state.stateProfile.newPostText = ''
-		this.rerender()
-	},
-	updateNewPostText(newText: string) {
-		this._state.stateProfile.newPostText = newText
-		this.rerender()
+
 	},
 	subscribe(observer: () => void) {
 		this.rerender = observer
@@ -108,7 +92,4 @@ export const store: StoreType = {
 	getState(){
 		return this._state
 	}
-
-
-
 }

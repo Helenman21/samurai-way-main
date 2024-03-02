@@ -27,8 +27,8 @@ function App({store}: AppPropsType) {
 			<Route path={'/dialogs'} render={() => <Dialogs stateDialogs={state.stateDialogs} />}/>
 			<Route path={'/profile'} component={() => <Profile postsData={state.stateProfile.postsData}
 																			   newPostText={state.stateProfile.newPostText}
-																				addPost={store.addPost.bind(store)}
-																				updateNewPostText={store.updateNewPostText.bind(store)} />} />
+																				dispatch={store.dispatch.bind(store)}
+																				 />} />
 		</div>
 		</div>
 	 </BrowserRouter>

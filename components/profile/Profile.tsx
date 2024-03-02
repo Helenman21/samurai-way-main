@@ -1,4 +1,4 @@
-import { StateProfileType } from '../../redux/state'
+import { ActionsType, StateProfileType } from '../../redux/state'
 import { MyPost, MyPostPropsType } from './MyPost/MyPost'
 import { PostPropsType } from './MyPost/Post/Post'
 //import './Profile.css'
@@ -6,20 +6,19 @@ import { ProfileInfo } from './profileInfo/ProfileInfo'
 
 type ProfilePropsType = {
 	postsData: PostPropsType[]
-	addPost: () => void
+	dispatch: (action: ActionsType) => void
 	newPostText: string
-	updateNewPostText: (newText: string) => void
 }
 
-export const Profile = ({postsData, addPost, newPostText, updateNewPostText}: ProfilePropsType) => {
+export const Profile = ({postsData, dispatch, newPostText}: ProfilePropsType) => {
 
 	return (
 		<div >
 			<ProfileInfo/>
 			<MyPost postsData={postsData}
-					  addPost={addPost} 
+					  dispatch={dispatch} 
 					  newPostText={newPostText}
-					  updateNewPostText={updateNewPostText} />
+					   />
 	  </div>
 	)
 }

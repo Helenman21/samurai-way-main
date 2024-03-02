@@ -1,16 +1,16 @@
 import { type } from 'os'
 import React from 'react'
+import { ActionsType, addPostAC, newPostTextAC } from '../../../redux/state'
 import classes from  './MyPost.module.css'
 import { Post, PostPropsType } from './Post/Post'
 
 export type MyPostPropsType = {
 	postsData: PostPropsType[]
-	addPost: () => void
+	dispatch: (action: ActionsType) => void
 	newPostText: string
-	updateNewPostText: (newText: string) => void
 }
 
-export const MyPost = ({postsData, addPost, newPostText, updateNewPostText}: MyPostPropsType) => {
+export const MyPost = ({postsData, dispatch, newPostText}: MyPostPropsType) => {
 	//debugger
 	const postsArray = postsData.map( el => ( <Post  message={el.message} key={el.id} id={el.id} likesCount={el.likesCount} />))
 	console.log('postsArray', postsArray)
@@ -18,12 +18,12 @@ export const MyPost = ({postsData, addPost, newPostText, updateNewPostText}: MyP
 	const addNewPost = () => {
 		if(newPostText.length > 0){
 			console.log('addnewpost')
-			addPost()
+			dispatch(addPostAC())
 		}
 	}
 	const onPostChange = () => {
 		if(newPostElement.current){
-			updateNewPostText(newPostElement.current.value)
+			dispatch(newPostTextAC(newPostElement.current.value))
 		}
 	}
 	return (
