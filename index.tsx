@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { store, StoreType } from './redux/state';
+import { store } from './redux/redux-store';
+import {Provider} from "react-redux";
 
 
 
-export const rerenderEntrieTree = () => {
-	ReactDOM.render(
-    <App store={store} />,
+
+ReactDOM.render(
+		<Provider store={store} >
+			<App />
+		</Provider>
+    ,
   document.getElementById('root')
 );
-}
-rerenderEntrieTree()
-
-store.subscribe(rerenderEntrieTree)

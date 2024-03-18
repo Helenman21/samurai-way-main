@@ -4,12 +4,14 @@ import { DialogItemPropsType } from "../components/dialogs/DialogItem"
 import { MessagePropsType } from "../components/dialogs/Message"
 import { PostPropsType } from "../components/profile/MyPost/Post/Post"
 import { profileReduser } from './profile-reduser';
+import {sidebarReduser} from "./sidebar-reduser";
 
 export enum ActionsEnumTypes{
 	ADD_POST = "ADD-POST",
 	NEW_POST_TEXT = "NEW_POST_TEXT",
 	NEW_MESSAGE_TEXT = "NEW_MESSAGE_TEXT",
-	ADD_NEW_MESSAGE = "ADD_NEW_MESSAGE"
+	ADD_NEW_MESSAGE = "ADD_NEW_MESSAGE",
+	SIDE_BAR = "SIDE_BAR",
 }
 export type StateDialogsType = {
 	dialogsData: DialogItemPropsType[]
@@ -23,16 +25,27 @@ export type StateProfileType = {
 export type StateType = {
 	stateDialogs: StateDialogsType
 	stateProfile: StateProfileType
+	sideBar: StateSideBar
+}
+
+export type StateSideBar = {
+	data: string
 }
 
 type AddPostType = ReturnType<typeof addPostAC>
 type NewPostTextType = ReturnType<typeof newPostTextAC>
 type NewMessageTextType = ReturnType<typeof newMessageTextAC>
-type addNewMessageType = ReturnType<typeof addNewMessageAC>
-export type ActionsType = AddPostType | NewPostTextType | NewMessageTextType | addNewMessageType
+type AddNewMessageType = ReturnType<typeof addNewMessageAC>
+type SideBarType = ReturnType<typeof sideBarAC>
+export type ActionsType = AddPostType | NewPostTextType | NewMessageTextType | AddNewMessageType | SideBarType
 export const addPostAC = () => {
 	return {
 		type: ActionsEnumTypes.ADD_POST
+	}as const
+}
+export const sideBarAC = () => {
+	return {
+		type: ActionsEnumTypes.SIDE_BAR
 	}as const
 }
 export const addNewMessageAC = () => {
@@ -78,7 +91,7 @@ export const store: StoreType = {
 			],
 			messageData: [
 				{ message: 'How', id: 1 },
-				{ message: 'Howare you', id: 2 }
+				{ message: 'How are you', id: 2 }
 			],
 			newMessageText: ''
 		},
@@ -88,6 +101,9 @@ export const store: StoreType = {
 				{ message: 'I am fine', likesCount: 2, id: 2 }
 			],
 			newPostText: ''
+		},
+		sideBar: {
+			data: 'never'
 		}
 	},
 	rerender() {
@@ -96,6 +112,7 @@ export const store: StoreType = {
 	dispatch(action){
 		this._state.stateDialogs = dialogsReduser(this._state.stateDialogs, action)
 		this._state.stateProfile = profileReduser(this._state.stateProfile, action)
+		this._state.sideBar = sidebarReduser(this._state.sideBar, action)
 		this.rerender()
 	},
 	subscribe(observer: () => void) {

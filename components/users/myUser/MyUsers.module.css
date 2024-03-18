@@ -1,0 +1,43 @@
+.avatarImage{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.buttonUnFollow{
+    background-color: greenyellow;
+}
+.buttonFollow{
+    background-color: aqua;
+}
+.blockMyUser{
+    display: flex;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-bottom: 20px;
+
+}
+.blockAvatarAndButton{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.blockAboutUser{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.blockAboutUserFullNameAndStatus{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    width: 70%;
+    text-align: start;
+}
+.blockUserLocation{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: auto;
+}

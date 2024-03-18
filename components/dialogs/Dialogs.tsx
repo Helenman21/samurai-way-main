@@ -4,27 +4,28 @@ import { ActionsType, addNewMessageAC, newMessageTextAC, StateDialogsType } from
 import { DialogItem, DialogItemPropsType } from './DialogItem'
 import classes from './Dialogs.module.css'
 import { Message, MessagePropsType } from './Message'
+import {DiaLogsPropsType} from "./DialogsContainer";
 
-type DialogsPropstype = {
-	stateDialogs: StateDialogsType
-	newMessageText: string
-	dispatch: (action: ActionsType) => void
-}
+// type DialogsPropstype = {
+// 	stateDialogs: StateDialogsType
+// 	newMessageText: string
+// 	addMessage: () => void
+// 	onChangeTextNewMessage: (message: string) => void
+// }
 
-export const Dialogs = ({stateDialogs, dispatch, newMessageText}: DialogsPropstype) => {
-
+export const Dialogs = ({stateDialogs, addMessage, onChangeTextNewMessage, newMessageText}: DiaLogsPropsType) => {
 	const arrayDialogs = stateDialogs.dialogsData.map( el =>
 		{return <DialogItem name={el.name} id={el.id} />}
 	)
-	const textareaRef = React.createRef<HTMLTextAreaElement>()
-	const addMessage = () => {
+	//const textareaRef = React.createRef<HTMLTextAreaElement>()
+	const onAddMessage = () => {
 		if(newMessageText.length > 0){
-			dispatch(addNewMessageAC())
+			addMessage()
 		}
 	}
-	const onChangeTextNewMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+	const changeTextNewMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		if(e.currentTarget.value.length > 0){
-			dispatch(newMessageTextAC(e.currentTarget.value))
+			onChangeTextNewMessage(e.currentTarget.value)
 		}		
 	}
 	const arrayMessage = stateDialogs.messageData.map(el => <Message key={el.id} id={el.id} message={el.message}/>)
@@ -37,10 +38,10 @@ export const Dialogs = ({stateDialogs, dispatch, newMessageText}: DialogsPropsty
 				{arrayMessage}
 				<div>
 					<div>
-						<textarea value={newMessageText} onChange={onChangeTextNewMessage}  />
+						<textarea value={newMessageText} onChange={changeTextNewMessage}  />
 					</div>
 					<div>
-						<button onClick={addMessage}>Send</button>
+						<button onClick={onAddMessage}>Send</button>
 					</div>
 				</div>
 			</div>			
